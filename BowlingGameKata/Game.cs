@@ -20,20 +20,39 @@ namespace BowlingGameKata
 
             for (var frame=0; frame < 10; frame++)
             {
-                if (FrameIsSpare(rollIndex))
+                if (FrameIsStrike(rollIndex))
+                {
+                    score += 10 + ScoreStrikeBonus(rollIndex);
+                    rollIndex++;
+                }
+                else if (FrameIsSpare(rollIndex))
+                {
                     score += 10 + ScoreSpareBonus(rollIndex);
+                    rollIndex += 2;
+                }
                 else
+                {
                     score += ScoreRegularFrame(rollIndex);
-
-                rollIndex += 2;
+                    rollIndex += 2;
+                }
             }
 
             return score;
         }
 
-        private Int32 ScoreRegularFrame(Int32 rollIndex)
+        private Boolean FrameIsStrike(Int32 rollIndex)
         {
-            return rolls[rollIndex] + rolls[rollIndex + 1];
+            return rolls[rollIndex] == 10;
+        }
+
+        private bool FrameIsSpare(int rollIndex)
+        {
+            return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
+        }
+
+        private Int32 ScoreStrikeBonus(Int32 rollIndex)
+        {
+            return rolls[rollIndex + 1] + rolls[rollIndex + 2];
         }
 
         private Int32 ScoreSpareBonus(Int32 rollIndex)
@@ -41,9 +60,9 @@ namespace BowlingGameKata
             return rolls[rollIndex + 2];
         }
 
-        private bool FrameIsSpare(int rollIndex)
+        private Int32 ScoreRegularFrame(Int32 rollIndex)
         {
-            return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
+            return rolls[rollIndex] + rolls[rollIndex + 1];
         }
     }
 }
