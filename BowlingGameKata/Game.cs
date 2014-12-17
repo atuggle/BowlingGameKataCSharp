@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BowlingGameKata
 {
     public class Game
     {
-        public void Roll(Int32 p)
+        private Int32[] rolls = new Int32[21];
+        private Int32 currentRoll = 0;
+
+        public void Roll(Int32 pins)
         {
+            rolls[currentRoll++] = pins;
         }
 
         public Int32 Score()
         {
-            return 0;
+            return rolls.ToList().Sum();
         }
     }
 }
