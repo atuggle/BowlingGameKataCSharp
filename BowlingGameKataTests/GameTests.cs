@@ -57,6 +57,16 @@ namespace BowlingGameKataTests
             Assert.AreEqual(26, score);
         }
 
+        [TestMethod]
+        public void CanBowlPerfectGame()
+        {
+            RollMany(12, 10);
+
+            var score = game.Score();
+
+            Assert.AreEqual(300, score);
+        }
+
         private void RollMany(Int32 rolls, Int32 pins)
         {
             for (var roll=0; roll<rolls; roll++)
