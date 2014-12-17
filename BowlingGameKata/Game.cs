@@ -8,5 +8,13 @@ namespace BowlingGameKata
 {
     public class Game
     {
+        public void Roll(Int32 p)
+        {
+        }
+
+        public Int32 Score()
+        {
+            return 0;
+        }
     }
 }
